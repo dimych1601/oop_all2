@@ -18,6 +18,18 @@ class Student:
         else:
             return 'Ошибка'
 
+    def average_grade_homework(self):
+        if len(self.grades.values()) == 0:
+            return 0
+        return sum(self.grades.values()) / len(self.grades.values())
+
+    def __str__(self):
+        return f'Имя: {self.name}\n\
+                 Фамилия: {self.surname}\n\
+                 Средняя оценка за домашние задания: {self.average_grade_homework()}\n\
+                 Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\n\
+                 Завершенные курсы: {", ".join(self.finished_courses)}'
+
 
 class Mentor:
     def __init__(self, name, surname):
@@ -28,6 +40,16 @@ class Mentor:
 
 class Lecturer(Mentor):
     grades = {}
+
+    def average_grade_lection(self):
+        if len(self.grades.values()) == 0:
+            return 0
+        return sum(self.grades.values()) / len(self.grades.values())
+
+    def __str__(self):
+        return f'Имя:{self.name}\n\
+                 Фамилия:{self.surname}\n\
+                 Средняя оценка за лекции:{self.average_grade_lection()}'
 
 
 class Reviewer(Mentor):
@@ -41,3 +63,6 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+
+    def __str__(self):
+        return f'Имя:{self.name}\nФамилия:{self.surname}'
