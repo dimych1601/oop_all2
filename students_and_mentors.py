@@ -33,7 +33,8 @@ class Student:
         return self.average_student() >= other.average_student()
 
     def rate_lecturer(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached:
+        if (isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and
+                course in self.courses_in_progress):
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
