@@ -33,7 +33,7 @@ class Student:
         return self.average_student() >= other.average_student()
 
     def rate_lecturer(self, lecturer, course, grade):
-        if isinstance(lecturer, Lecturer):
+        if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached:
             if course in lecturer.grades:
                 lecturer.grades[course] += [grade]
             else:
@@ -60,9 +60,7 @@ class Mentor:
 
 
 class Lecturer(Mentor):
-    def __init__(self, name, surname):
-        super().__init__(name, surname)
-        self.grades = {}
+    grades = {}
 
     def __str__(self):
         return (f'Имя: {self.name}\n'
@@ -145,7 +143,9 @@ student2.courses_in_progress += ['Python', 'Ruby']
 student2.finished_courses += ['PHP']
 
 lecturer1 = Lecturer('Петр', 'Петров')
+lecturer1.courses_attached += ['Python', 'C++', 'Java']
 lecturer2 = Lecturer('Зоя', 'Захарова')
+lecturer2.courses_attached += ['Python', 'Ruby']
 
 reviewer1 = Reviewer('Мария', 'Сидорова')
 reviewer1.courses_attached += ['Python', 'PHP']
