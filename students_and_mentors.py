@@ -36,9 +36,9 @@ class Student:
         if (isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and
                 course in self.courses_in_progress):
             if course in lecturer.grades:
-                lecturer.grades[course] += [grade]
+                lecturer.grades[course] += min([abs(grade)], [10]) or max([abs(grade)], [1])
             else:
-                lecturer.grades[course] = [grade]
+                lecturer.grades[course] = min([abs(grade)], [10]) or max([abs(grade)], [1])
         else:
             return 'Ошибка'
 
